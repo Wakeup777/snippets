@@ -34,6 +34,7 @@ Connecting to MySQL Server from within the Container
 Once the server is ready, you can run the mysql client within the MySQL Server container you just started, and connect it to the MySQL Server. Use the docker exec -it command to start a mysql client inside the Docker container you have started, like the following:
 
 docker exec -it mysql1 mysql -uroot -p
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPas
 
 +++++++++++++++++
 https://github.com/Wakeup777/Ansible_Zabbix_agent/blob/master/role_zabbix_agent.yml
@@ -50,6 +51,8 @@ cd zabbix-docker
 ./install.sh 
 systemctl restart zabbix-agent.service 
 
+
+zabbix_get -s ip -k docker.container.inspect.boolean[id контейнера,State.Running]
 
 
 
