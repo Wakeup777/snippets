@@ -1,5 +1,9 @@
 https://github.com/SamihG/zabbix/tree/master/zabbix_docker
 https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-getting-started.html
+https://github.com/Wakeup777/Ansible_Zabbix_agent/blob/master/role_zabbix_agent.yml
+
+
+https://github.com/rpsedlak/zabbix-docker
 
 docker pull mysql/mysql-server:tag
 The tag is the label for the image version you want to pull (for example, 5.5, 5.6, 5.7, 8.0, or latest). If :tag is omitted, the latest label is used, and the image for the latest GA version of MySQL Community Server is downloaded. Refer to the list of tags for available versions on the mysql/mysql-server page in the Docker Hub.
@@ -30,5 +34,24 @@ Connecting to MySQL Server from within the Container
 Once the server is ready, you can run the mysql client within the MySQL Server container you just started, and connect it to the MySQL Server. Use the docker exec -it command to start a mysql client inside the Docker container you have started, like the following:
 
 docker exec -it mysql1 mysql -uroot -p
+
++++++++++++++++++
+https://github.com/Wakeup777/Ansible_Zabbix_agent/blob/master/role_zabbix_agent.yml
+
+groupadd docker
+usermod -Ga docker zabbix
+groups zabbix
+
+https://github.com/rpsedlak/zabbix-docker
+
+cd
+git clone https://github.com/rpsedlak/zabbix-docker
+cd zabbix-docker
+./install.sh 
+systemctl restart zabbix-agent.service 
+
+
+
+
 
 
