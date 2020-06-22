@@ -1,0 +1,34 @@
+https://github.com/SamihG/zabbix/tree/master/zabbix_docker
+https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-getting-started.html
+
+docker pull mysql/mysql-server:tag
+The tag is the label for the image version you want to pull (for example, 5.5, 5.6, 5.7, 8.0, or latest). If :tag is omitted, the latest label is used, and the image for the latest GA version of MySQL Community Server is downloaded. Refer to the list of tags for available versions on the mysql/mysql-server page in the Docker Hub.
+
+
+shell> docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+mysql/mysql-server   latest              3157d7f55f8d        4 weeks ago         241MB
+To download the MySQL Enterprise Edition image from the My Oracle Support website, sign in to your Oracle account, download from Patches and Updates the tar.zip file for the Docker image (mysql-commercial-version_linux_x86_64_docker_tar.zip), unzip it to obtain the tarball inside (mysql-enterprise-server-version.tar), and then load the image by running this command:
+
+
+docker run --name=mysql1 -d mysql/mysql-server:8.0
+To start a new Docker container for the MySQL Enterprise Server with a Docker image downloaded from My Oracle Support, use this command:
+
+shell> docker ps
+CONTAINER ID   IMAGE                COMMAND                  CREATED             STATUS                              PORTS                NAMES
+a24888f0d6f4   mysql/mysql-server   "/entrypoint.sh my..."   14 seconds ago      Up 13 seconds (health: starting)    3306/tcp, 33060/tcp  mysql1
+The container initialization might take some time. When the server is ready for use, the STATUS of the container in the output of the docker ps command changes from (health: starting) to (healthy).
+
+The -d option used in the docker run command above makes the container run in the background. Use this command to monitor the output from the container:
+
+docker logs mysql1
+Once initialization is finished, the command's output is going to contain the random password generated for the root user; check the password with, for example, this command:
+
+shell> docker logs mysql1 2>&1 | grep GENERATED
+GENERATED ROOT PASSWORD: Axegh3kAJyDLaRuBemecis&EShOs
+Connecting to MySQL Server from within the Container
+Once the server is ready, you can run the mysql client within the MySQL Server container you just started, and connect it to the MySQL Server. Use the docker exec -it command to start a mysql client inside the Docker container you have started, like the following:
+
+docker exec -it mysql1 mysql -uroot -p
+
+
