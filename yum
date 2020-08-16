@@ -1,0 +1,5 @@
+
+
+yum repoinfo shells_fish_release_3
+
+yum repo-pkgs shells_fish_release_3 list
